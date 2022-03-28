@@ -40,12 +40,12 @@ public class Confirmation {
 
     ProgressBar progressbar = new ProgressBar();
     progressbar.getStyleClass().add("notisProgress-bar");
-    progressbar.setPrefSize(540, 15);
+    progressbar.setPrefSize(325, 5);
     progressbar.setProgress(0.0);
 
     VBox vbox = new VBox(label, progressbar);
     vbox.setAlignment(Pos.CENTER);
-    vbox.setPrefSize(550, 70);
+    vbox.setPrefSize(335, 80);
     vbox.getStyleClass().add("notisContainer");
     vbox.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
 
@@ -55,8 +55,8 @@ public class Confirmation {
     fadeInTransition.play();
     Scene scene = new Scene(vbox);
     Stage stage = new Stage();
-    stage.setX(Screen.getPrimary().getBounds().getWidth() - vbox.getPrefWidth() - 20);
-    stage.setY(Screen.getPrimary().getBounds().getHeight() + 80);
+    stage.setX(Screen.getPrimary().getBounds().getWidth() - vbox.getPrefWidth() - 5);
+    stage.setY(Screen.getPrimary().getBounds().getHeight() - 80);
     stage.initStyle(StageStyle.TRANSPARENT);
     stage.setAlwaysOnTop(true);
     stage.setScene(scene);
@@ -77,7 +77,7 @@ public class Confirmation {
       @Override
       public void handle(long now) {
           stage.setY(stage.getY() - 3.5);
-          if (stage.getY() < Screen.getPrimary().getBounds().getHeight() - vbox.getPrefHeight() - 50) {
+          if (stage.getY() < Screen.getPrimary().getBounds().getHeight() - vbox.getPrefHeight() - 10 * 5) {
               this.stop();
               thread.start();
           }
