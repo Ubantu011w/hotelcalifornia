@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane fx:id="parent" focusTraversable="false" style="-fx-padding: 0;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.CalendarfxController">
+   <content>
+      <VBox style="-fx-background-color: #343a40;">
+         <children>
+            <HBox fx:id="calendarHbox" prefHeight="114.0" prefWidth="1576.0" VBox.vgrow="NEVER">
+               <children>
+                  <VBox alignment="TOP_RIGHT" maxHeight="680.0" prefHeight="672.0" prefWidth="233.0" spacing="2.0">
+                     <children>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="111.0" prefWidth="184.0" spacing="15.0">
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Floor">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Text>
+                              <VBox alignment="CENTER" prefHeight="94.0" prefWidth="60.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#floorSwap" prefHeight="13.0" prefWidth="18.0" rotate="270.0" style="-fx-background-color: white;" styleClass="iconArrow" />
+                                    <Label fx:id="floorNumber" alignment="CENTER" text="1" textAlignment="CENTER" textFill="WHITE" underline="true">
+                                       <font>
+                                          <Font name="Dubai Regular" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Button mnemonicParsing="false" onAction="#floorSwap" prefHeight="13.0" prefWidth="18.0" rotate="90.0" style="-fx-background-color: white;" styleClass="iconArrow">
+                                       <VBox.margin>
+                                          <Insets left="2.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets right="2.0" />
+                     </padding>
+                  </VBox>
+                  <VBox maxHeight="674.0" maxWidth="1.7976931348623157E308" prefHeight="674.0" prefWidth="1362.0" spacing="4.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox fx:id="monthHboxParent" alignment="BOTTOM_LEFT" prefHeight="29.0" prefWidth="1360.0" spacing="4.0">
+                           <children>
+                              <HBox fx:id="monthHbox" alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="30.0" prefWidth="1360.0" spacing="30.0" style="-fx-background-color: #e2e7eb;">
+                                 <children>
+                                    <Pane prefHeight="29.0" prefWidth="450.0" />
+                                    <Text fx:id="yearText" strokeType="OUTSIDE" strokeWidth="0.0" text="YEAR">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Text>
+                                    <Button defaultButton="true" mnemonicParsing="false" onAction="#monthSwap" prefHeight="13.0" prefWidth="14.0" rotate="180.0" style="-fx-background-color: black;" styleClass="iconArrow" />
+                                    <HBox alignment="CENTER" prefHeight="29.0" prefWidth="123.0">
+                                       <children>
+                                          <Text fx:id="monthText" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTH" textAlignment="CENTER" wrappingWidth="112.00390625">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <Button defaultButton="true" mnemonicParsing="false" onAction="#monthSwap" prefHeight="13.0" prefWidth="14.0" style="-fx-background-color: black;" styleClass="iconArrow" translateY="-1.0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin></Button>
+                                    <Pane prefHeight="29.0" prefWidth="400.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="weeksHbox" alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="1360.0" spacing="4.0" />
+                        <Pane fx:id="calendarDaysParent">
+                           <children>
+                              <HBox fx:id="calendarDaysHbox" prefHeight="43.0" prefWidth="1360.0" spacing="4.0" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Pane prefHeight="547.0" prefWidth="1596.0">
+               <children>
+                  <Pane layoutY="-5.0">
+                     <children>
+                        <Slider fx:id="slider" layoutY="12.0" majorTickUnit="5.0" max="4.0" minorTickCount="4" orientation="VERTICAL" prefHeight="542.0" prefWidth="37.0" rotate="180.0" showTickMarks="true" snapToTicks="true" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="50.0">
+                     <children>
+                        <ImageView fx:id="normalMap" fitHeight="544.0" fitWidth="1360.0" layoutX="183.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" />
+                        <ScrollPane fx:id="scrollPane" focusTraversable="false" hbarPolicy="NEVER" maxHeight="540.0" prefHeight="540.0" prefWidth="1545.0" styleClass="calendarScrollpane" vbarPolicy="NEVER">
+                           <content>
+                              <Pane fx:id="calendarPane" prefHeight="540.0" prefWidth="1545.0">
+                                 <children>
+                                    <VBox fx:id="roomsVbox" alignment="TOP_RIGHT" layoutX="-2.0" layoutY="-2.0" maxHeight="535.0" minHeight="485.0" prefHeight="535.0" prefWidth="183.0">
+                                       <opaqueInsets>
+                                          <Insets right="5.0" />
+                                       </opaqueInsets>
+                                       <effect>
+                                          <Reflection bottomOpacity="0.16" fraction="1.0" />
+                                       </effect>
+                                       <padding>
+                                          <Insets top="-1.0" />
+                                       </padding>
+                                    </VBox>
+                                    <Pane fx:id="calendarBody" layoutX="183.0" maxHeight="560.0" prefHeight="540.0" prefWidth="1360.0">
+                                       <children>
+                                          <Pane fx:id="background" maxWidth="1360.0" prefHeight="540.0" prefWidth="1360.0" styleClass="background" />
+                                          <Pane fx:id="backgroundNumbers" maxWidth="1360.0" minHeight="544.0" minWidth="1232.0" mouseTransparent="true" prefHeight="540.0" prefWidth="1360.0" styleClass="backgroundNumbers" />
+                                          <Pane fx:id="placeHolder" maxWidth="1360.0" prefHeight="540.0" prefWidth="1360.0" />
+                                       </children>
+                                    </Pane>
+                                 </children>
+                              </Pane>
+                           </content>
+                        </ScrollPane>
+                     </children>
+                     <effect>
+                        <Reflection fraction="0.15" topOpacity="0.34" />
+                     </effect>
+                  </Pane>
+               </children>
+            </Pane>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
