@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -220,6 +222,8 @@ public class RecepfxController implements Initializable {
   private Button triggerUpdateAnno;
   @FXML
   private Button triggerSaveAnno;
+  @FXML
+  private DatePicker dateEndreservation;
   
   /**
    * A listener used to keep track of width property of the main stage
@@ -395,6 +399,15 @@ public class RecepfxController implements Initializable {
 
     sortedReservations.comparatorProperty().bind(reservationView.comparatorProperty());
     reservationView.setItems(sortedReservations);
+
+    reservationView.setOnMouseClicked((MouseEvent event) -> {
+      if (event.getButton().equals(MouseButton.PRIMARY)) {
+        if (!reservationView.getSelectionModel().isEmpty()) {
+          LocalDate date = LocalDate.parse(reservationView.getSelectionModel().getSelectedItem().getDateEnd());
+          dateEndreservation.setValue(date);
+        }
+      }
+    });
   }
   
   /**
@@ -529,7 +542,12 @@ public class RecepfxController implements Initializable {
 
   @FXML
   private void editReservation(ActionEvent event) {
-    // TODO: "Fill up"
+    Reservation reservation = reservationView.getSelectionModel().getSelectedItem();
+    dbHandler.insert("reservation", "date_end", dateEndreservation.getValue().toString(),
+          Integer.toString(reservation.getReservationId()));
+    reservation.setDateEnd(dateEndreservation.getValue().toString());
+    reservationView.refresh();
+    confirmation.run("Successfully changed date.");
   }
 
   /**
